@@ -1,0 +1,14 @@
+Date =
+VAR MinYear = YEAR ( MIN ( Sales[Order Date] ) )
+VAR MaxYear = YEAR ( MAX ( Sales[Order Date] ) )
+RETURN
+ADDCOLUMNS (
+    FILTER (
+        CALENDARAUTO( ),
+        AND ( YEAR ( [Date] ) >= MinYear, YEAR ( [Date] ) <= MaxYear )
+    ),
+    "Calendar Year", "CY " & YEAR ( [Date] ),
+    "Month Name", FORMAT ( [Date], "mmmm" ),
+    "Month Number", MONTH ( [Date] )
+)
+
